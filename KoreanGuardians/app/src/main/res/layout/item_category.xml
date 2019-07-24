@@ -4,6 +4,7 @@
         android:layout_width="match_parent"
         android:layout_height="168dp" xmlns:app="http://schemas.android.com/apk/res-auto"
         android:clickable="true"
+        android:background="?attr/selectableItemBackground"
         xmlns:tools="http://schemas.android.com/tools">
     <ImageView
         android:id="@+id/iv_icon_item_category"
@@ -16,12 +17,12 @@
         android:id="@+id/tv_name_item_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:includeFontPadding="false"
         android:textSize="15sp"
         android:textColor="#000000"
-        android:letterSpacing="-0.04sp"
         android:fontFamily="@font/notosanscjkkrmedium"
         app:layout_constraintTop_toBottomOf="@+id/iv_icon_item_category"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="7dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="모찌"/>
@@ -29,6 +30,7 @@
         android:id="@+id/tv_cnt_item_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:includeFontPadding="false"
         android:textSize="15sp"
         android:textColor="#8d8d8d"
         android:fontFamily="@font/notosanscjkkrmedium"
@@ -40,6 +42,7 @@
         android:id="@+id/tv_hashtag_item_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:includeFontPadding="false"
         android:textSize="14sp"
         android:textColor="@color/colorAccent"
         android:letterSpacing="-0.04"

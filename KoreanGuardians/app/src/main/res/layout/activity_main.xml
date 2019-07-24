@@ -13,7 +13,6 @@
         android:layout_height="103dp"
         android:textSize="24sp"
         android:textColor="#000000"
-        android:letterSpacing="-0.04sp"
         android:lineSpacingExtra="-8sp"
         android:fontFamily="@font/notosanscjkkrlight"
         android:paddingStart="16dp"
@@ -29,11 +28,12 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_category_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/view_blank_main"/>
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/view_blank_main"
+        app:layout_constraintBottom_toBottomOf="parent"/>
     <View
         android:layout_width="0.3dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:background="#707070"
         app:layout_constraintTop_toTopOf="@+id/rv_category_main"
         app:layout_constraintBottom_toBottomOf="@+id/rv_category_main"
@@ -43,6 +43,8 @@
         android:layout_width="118dp"
         android:layout_height="39dp"
         android:background="@drawable/custom_btn_blue"
+        android:clickable="true"
+        android:includeFontPadding="false"
         android:text="제보하기"
         android:textSize="16sp"
         android:letterSpacing="-0.04"

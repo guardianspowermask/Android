@@ -2,6 +2,7 @@ package com.guardians.kr.ui.main
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +22,9 @@ class CategoryAdapter(val ctx : Context, var categoryItems: ArrayList<CategoryIt
         holder.name_tv.text = categoryItems[position].name
         holder.cnt_tv.text = "(${categoryItems[position].cnt})"
         var tmp = ""
-        categoryItems[position].replacement.onEach { tmp += "#$it " }
+        for (i in categoryItems[position].replacement) {
+            tmp += "#$i "
+        }
         holder.hashtag_tv.text = tmp.trim()
     }
 }
