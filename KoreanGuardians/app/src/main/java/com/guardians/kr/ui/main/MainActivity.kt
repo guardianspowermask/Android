@@ -3,9 +3,10 @@ package com.guardians.kr.ui.main
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import com.guardians.kr.R
 import kotlinx.android.synthetic.main.activity_main.*
+import android.content.Intent
+import com.guardians.kr.R
+
 
 class MainActivity : AppCompatActivity() {
     private var categoryItems: ArrayList<CategoryItem> = ArrayList()
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setRecyclerView()
+        setClickListener()
     }
 
     private fun setRecyclerView() {
@@ -35,5 +37,17 @@ class MainActivity : AppCompatActivity() {
         categoryAdapter = CategoryAdapter(this, categoryItems)
         rv_category_main.layoutManager = GridLayoutManager(this, 2)
         rv_category_main.adapter = categoryAdapter
+    }
+
+    private fun setClickListener() {
+        btn_inform_main.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "message/rfc822"
+            intent.putExtra(Intent.EXTRA_EMAIL, "emailaddress@emailaddress.com")
+            intent.putExtra(Intent.EXTRA_SUBJECT, "[제보] 일본어 사용 제품 제보합니다!")
+            intent.putExtra(Intent.EXTRA_TEXT, "제품명: \nex) CU 리얼초코모찌롤\n\n제조사: \n\n한 마디: \n\n위 제품을 제보합니다. \n각시탈 파이팅 :)")
+
+            startActivity(Intent.createChooser(intent, "항의 메일 보내기"))
+        }
     }
 }
