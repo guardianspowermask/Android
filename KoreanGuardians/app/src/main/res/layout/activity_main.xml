@@ -5,14 +5,14 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".ui.main.MainActivity">
     <TextView
         android:id="@+id/tv_top_main"
         android:layout_width="match_parent"
         android:layout_height="103dp"
         android:textSize="24sp"
         android:textColor="#000000"
-        android:letterSpacing="-0.04"
+        android:letterSpacing="-0.04sp"
         android:lineSpacingExtra="-8sp"
         android:fontFamily="@font/notosanscjkkrlight"
         android:paddingStart="16dp"
@@ -30,4 +30,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/view_blank_main"/>
+    <View
+        android:layout_width="0.3dp"
+        android:layout_height="wrap_content"
+        android:background="#707070"
+        app:layout_constraintTop_toTopOf="@+id/rv_category_main"
+        app:layout_constraintBottom_toBottomOf="@id/rv_category_main"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <Button
+        android:layout_width="118dp"
+        android:layout_height="39dp"
+        android:background="@drawable/custom_btn_blue"
+        android:text="제보하기"
+        android:textSize="16sp"
+        android:letterSpacing="-0.04"
+        android:fontFamily="@font/notosanscjkkrmedium"
+        android:textColor="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="18dp"/>
 </android.support.constraint.ConstraintLayout>
