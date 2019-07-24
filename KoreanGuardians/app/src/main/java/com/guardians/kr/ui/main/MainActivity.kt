@@ -25,6 +25,12 @@ class MainActivity : AppCompatActivity() {
         categoryItems.add(CategoryItem("모찌", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 125, arrayListOf("찹쌀떡", "찰떡")))
         categoryItems.add(CategoryItem("모찌", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 125, arrayListOf("찹쌀떡", "찰떡")))
         categoryItems.add(CategoryItem("모찌", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 125, arrayListOf("찹쌀떡", "찰떡")))
+        categoryItems.add(CategoryItem("모찌", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 125, arrayListOf("찹쌀떡", "찰떡")))
+        categoryItems.add(CategoryItem("모찌", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 125, arrayListOf("찹쌀떡", "찰떡")))
+        categoryItems.add(CategoryItem("모찌", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 125, arrayListOf("찹쌀떡", "찰떡")))
+        categoryItems.add(CategoryItem("모찌", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 125, arrayListOf("찹쌀떡", "찰떡")))
+        categoryItems.add(CategoryItem("모찌", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 125, arrayListOf("찹쌀떡", "찰떡")))
+        categoryItems.add(CategoryItem("모찌", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 125, arrayListOf("찹쌀떡", "찰떡")))
 
         categoryAdapter = CategoryAdapter(this, categoryItems)
         rv_category_main.layoutManager = GridLayoutManager(this, 2)
