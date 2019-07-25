@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="26dp"
+    android:textSize="14sp"
+    android:textColor="#3c3c3c"
+    android:letterSpacing="-0.04"
+    android:lineSpacingExtra="10sp"
+    android:includeFontPadding="false"
+    android:paddingStart="12dp"
+    android:paddingTop="3dp"
+    android:paddingEnd="12dp"
+    android:paddingBottom="5dp"
+android:fontFamily="@font/notosanscjkkrregular"
+          android:background="@drawable/custom_btn_off"
+    tools:text="전체">
+
+</TextView>
