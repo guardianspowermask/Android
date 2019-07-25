@@ -20,6 +20,7 @@ class ReportActivity : AppCompatActivity() {
 
         setRecyclerCategory()
         setRecyclerItem()
+        tv_cnt_report.text = "${514}건"
     }
 
     private fun setRecyclerCategory() {
@@ -34,21 +35,16 @@ class ReportActivity : AppCompatActivity() {
         categoryItems.add(CategoryReportItem(false, "타마고"))
 
         categoryAdapter = CategoryReportAdapter(this, categoryItems)
-        rv_category_report.layoutManager = LinearLayoutManager(this)
+        rv_category_report.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         rv_category_report.adapter = categoryAdapter
     }
 
     private fun setRecyclerItem() {
-        itemItems.add(ItemItem("모찌롤", "CU", "http://pds21.egloos.com/pds/201903/26/18/d0050518_5c98f84abf43c.jpg", 141, "danfwjdnw@na.kr", "dqwdwsdcwd23"))
-        itemItems.add(ItemItem("모찌롤", "CU", "http://pds21.egloos.com/pds/201903/26/18/d0050518_5c98f84abf43c.jpg", 141, "danfwjdnw@na.kr", null))
-        itemItems.add(ItemItem("모찌롤", "CU", "http://pds21.egloos.com/pds/201903/26/18/d0050518_5c98f84abf43c.jpg", 141, "danfwjdnw@na.kr", null))
-        itemItems.add(ItemItem("모찌롤", "CU", "http://pds21.egloos.com/pds/201903/26/18/d0050518_5c98f84abf43c.jpg", 141, null, "dqwdwsdcwd23"))
-        itemItems.add(ItemItem("모찌롤", "CU", "http://pds21.egloos.com/pds/201903/26/18/d0050518_5c98f84abf43c.jpg", 141, null, "dqwdwsdcwd23"))
-        itemItems.add(ItemItem("모찌롤", "CU", "http://pds21.egloos.com/pds/201903/26/18/d0050518_5c98f84abf43c.jpg", 141, "danfwjdnw@na.kr", "dqwdwsdcwd23"))
-        itemItems.add(ItemItem("모찌롤", "CU", "http://pds21.egloos.com/pds/201903/26/18/d0050518_5c98f84abf43c.jpg", 141, "danfwjdnw@na.kr", null))
-        itemItems.add(ItemItem("모찌롤", "CU", "http://pds21.egloos.com/pds/201903/26/18/d0050518_5c98f84abf43c.jpg", 141, "danfwjdnw@na.kr", null))
-        itemItems.add(ItemItem("모찌롤", "CU", "http://pds21.egloos.com/pds/201903/26/18/d0050518_5c98f84abf43c.jpg", 141, null, "dqwdwsdcwd23"))
-        itemItems.add(ItemItem("모찌롤", "CU", "http://pds21.egloos.com/pds/201903/26/18/d0050518_5c98f84abf43c.jpg", 141, null, "dqwdwsdcwd23"))
+        itemItems.add(ItemItem("모찌롤", "CU", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 141, "danfwjdnw@na.kr", "dqwdwsdcwd23"))
+        itemItems.add(ItemItem("모찌롤", "CU", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 141, "danfwjdnw@na.kr", null))
+        itemItems.add(ItemItem("모찌롤", "CU", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 141, "danfwjdnw@na.kr", null))
+        itemItems.add(ItemItem("모찌롤", "CU", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 141, null, "dqwdwsdcwd23"))
+        itemItems.add(ItemItem("모찌롤", "CU", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 141, null, "dqwdwsdcwd23"))
 
         itemAdapter = ItemAdapter(this, itemItems)
         rv_item_report.layoutManager = LinearLayoutManager(this)

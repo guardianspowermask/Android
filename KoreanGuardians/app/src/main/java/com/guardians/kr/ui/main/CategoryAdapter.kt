@@ -1,13 +1,14 @@
 package com.guardians.kr.ui.main
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.guardians.kr.R
+import com.guardians.kr.ui.report.ReportActivity
 
 class CategoryAdapter(val ctx : Context, var categoryItems: ArrayList<CategoryItem>) : RecyclerView.Adapter<CategoryViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
@@ -26,5 +27,9 @@ class CategoryAdapter(val ctx : Context, var categoryItems: ArrayList<CategoryIt
             tmp += "#$i "
         }
         holder.hashtag_tv.text = tmp.trim()
+
+        holder.wrap_const.setOnClickListener {
+            ctx.startActivity(Intent(ctx, ReportActivity::class.java))
+        }
     }
 }

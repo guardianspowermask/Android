@@ -43,9 +43,9 @@ class MainActivity : AppCompatActivity() {
         btn_inform_main.setOnClickListener {
             val intent = Intent(Intent.ACTION_SEND)
             intent.type = "message/rfc822"
-            intent.putExtra(Intent.EXTRA_EMAIL, "emailaddress@emailaddress.com")
+            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("gaksital.official@gmail.com"))
             intent.putExtra(Intent.EXTRA_SUBJECT, "[제보] 일본어 사용 제품 제보합니다!")
-            intent.putExtra(Intent.EXTRA_TEXT, "제품명: \nex) CU 리얼초코모찌롤\n\n제조사: \n\n한 마디: \n\n위 제품을 제보합니다. \n각시탈 파이팅 :)")
+            intent.putExtra(Intent.EXTRA_TEXT, "제품명: \nex) CU 리얼초코모찌롤\n\n제조사: \nex) CJ 푸드빌\n\n한 마디: \n\n위 제품을 제보합니다. \n각시탈 파이팅 :)")
 
             startActivity(Intent.createChooser(intent, "항의 메일 보내기"))
         }

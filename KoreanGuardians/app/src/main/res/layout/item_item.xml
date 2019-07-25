@@ -10,11 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardCornerRadius="20dp"
+        android:elevation="0dp"
+        app:cardElevation="0dp"
         android:layout_marginBottom="11dp" >
         <ImageView
             android:id="@+id/iv_img_item_item"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:src="@drawable/ic_launcher_background"
             android:scaleType="centerCrop"/>
         <ImageView
             android:layout_width="match_parent"
@@ -99,8 +102,12 @@
         android:id="@+id/iv_btn_item_item"
         android:layout_width="89dp"
         android:layout_height="38dp"
-        android:background="@drawable/custom_btn_white"
+        android:src="@drawable/custom_btn_white"
+
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:clickable="true"
+        android:background="?attr/selectableItemBackground"
+
         android:includeFontPadding="false"
         android:textSize="16sp"
         android:letterSpacing="-0.04"

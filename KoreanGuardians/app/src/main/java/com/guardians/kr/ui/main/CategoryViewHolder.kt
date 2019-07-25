@@ -1,5 +1,6 @@
 package com.guardians.kr.ui.main
 
+import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
@@ -11,4 +12,5 @@ class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var icon_iv : ImageView = itemView.findViewById(R.id.iv_icon_item_category)
     var cnt_tv : TextView = itemView.findViewById(R.id.tv_cnt_item_category)
     var hashtag_tv : TextView = itemView.findViewById(R.id.tv_hashtag_item_category)
+    var wrap_const : ConstraintLayout = itemView.findViewById(R.id.const_category_item_category)
 }
