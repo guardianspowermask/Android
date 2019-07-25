@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setCommunication() {
-        val getRankReview = networkService.getCategory()
-        getRankReview.enqueue(object : Callback<GetCategoryResponse> {
+        val getCategory = networkService.getCategory()
+        getCategory.enqueue(object : Callback<GetCategoryResponse> {
             override fun onFailure(call: Call<GetCategoryResponse>?, t: Throwable?) {
                 Log.d("Error::Main", "$t")
             }

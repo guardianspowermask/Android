@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.guardians.kr.R
-import com.guardians.kr.ui.report.ItemItem
 import android.widget.Toast
 import android.net.Uri
 import android.content.*
+import com.guardians.kr.get.GetItemResponseDataItem
 
-class ItemAdapter(var ctx: Context, var itemItems: ArrayList<ItemItem>) : RecyclerView.Adapter<ItemViewHolder>() {
+class ItemAdapter(var ctx: Context, var itemItems: ArrayList<GetItemResponseDataItem>) : RecyclerView.Adapter<ItemViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val mainView : View = LayoutInflater.from(parent.context).inflate(R.layout.item_item, parent, false)
         return ItemViewHolder(mainView)
@@ -23,7 +23,7 @@ class ItemAdapter(var ctx: Context, var itemItems: ArrayList<ItemItem>) : Recycl
         holder.name_tv.text = itemItems[position].name
         holder.store_tv.text = itemItems[position].store
         Glide.with(ctx).load(itemItems[position].img).into(holder.img_iv)
-        holder.cnt_tv.text = itemItems[position].cnt.toString()
+        holder.cnt_tv.text = itemItems[position].report_cnt.toString()
 
         holder.btn_iv.setOnClickListener {
             if (itemItems[position].email != ""){
