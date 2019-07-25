@@ -4,11 +4,16 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.guardians.kr.R
+import com.guardians.kr.get.GetCategoryResponseData
+import com.guardians.kr.network.ApplicationController
+import com.guardians.kr.network.NetworkService
 import com.guardians.kr.ui.main.CategoryReportAdapter
 import com.guardians.kr.ui.main.ItemAdapter
 import kotlinx.android.synthetic.main.activity_report.*
 
 class ReportActivity : AppCompatActivity() {
+    var networkService : NetworkService = ApplicationController.instance.networkService
+
     private var categoryItems: ArrayList<CategoryReportItem> = ArrayList()
     private lateinit var categoryAdapter: CategoryReportAdapter
     private var itemItems: ArrayList<ItemItem> = ArrayList()
@@ -19,24 +24,25 @@ class ReportActivity : AppCompatActivity() {
         setContentView(R.layout.activity_report)
 
         setRecyclerCategory()
+        setCommunication()
         setRecyclerItem()
         tv_cnt_report.text = "${514}건"
     }
 
     private fun setRecyclerCategory() {
-        categoryItems.add(CategoryReportItem(true, "전체"))
-        categoryItems.add(CategoryReportItem(false, "모찌"))
-        categoryItems.add(CategoryReportItem(false, "카라이"))
-        categoryItems.add(CategoryReportItem(false, "산도"))
-        categoryItems.add(CategoryReportItem(false, "타마고"))
-        categoryItems.add(CategoryReportItem(false, "모찌"))
-        categoryItems.add(CategoryReportItem(false, "카라이"))
-        categoryItems.add(CategoryReportItem(false, "산도"))
-        categoryItems.add(CategoryReportItem(false, "타마고"))
+        val intentItems = intent.getParcelableArrayListExtra<GetCategoryResponseData>("CATEGORY")
+        val selectedIdx = intent.getIntExtra("IDX", -1)
+
+        for (i in 0 until intentItems.size)
+            categoryItems.add(CategoryReportItem(selectedIdx == intentItems[i].category_idx, intentItems[i].category_idx, intentItems[i].name))
 
         categoryAdapter = CategoryReportAdapter(this, categoryItems)
         rv_category_report.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         rv_category_report.adapter = categoryAdapter
+    }
+
+    private fun setCommunication() {
+
     }
 
     private fun setRecyclerItem() {

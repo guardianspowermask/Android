@@ -26,7 +26,7 @@ class ItemAdapter(var ctx: Context, var itemItems: ArrayList<ItemItem>) : Recycl
         holder.cnt_tv.text = itemItems[position].cnt.toString()
 
         holder.btn_iv.setOnClickListener {
-            if (itemItems[position].email != null){
+            if (itemItems[position].email != ""){
                 sendEmail(itemItems[position].email?:"", itemItems[position].name)
 
             } else {

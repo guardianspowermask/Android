@@ -30,7 +30,11 @@ class CategoryAdapter(val ctx : Context, var categoryItems: ArrayList<GetCategor
         holder.hashtag_tv.text = tmp.trim()
 
         holder.wrap_const.setOnClickListener {
-            ctx.startActivity(Intent(ctx, ReportActivity::class.java))
+            Intent(ctx, ReportActivity::class.java).let {
+                it.putExtra("CATEGORY", categoryItems)
+                it.putExtra("IDX", categoryItems[position].category_idx)
+                ctx.startActivity(it)
+            }
         }
     }
 }
