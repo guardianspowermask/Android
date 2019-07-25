@@ -56,33 +56,29 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="13dp"
                 tools:text="173건"/>
-            <TextView
-                android:id="@+id/tv_order_report"
+            <Spinner
+                android:id="@+id/spinner_order_report"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#3c3c3c"
-                android:letterSpacing="-0.04"
-                android:includeFontPadding="false"
-                android:fontFamily="@font/notosanscjkkrregular"
+                android:layout_height="19dp"
+                android:theme="@style/SpinnerTheme"
+                android:background="@null"
+                android:popupBackground="#fff"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="13dp"
-                android:text="인기순"/>
+                android:layout_marginTop="13dp"/>
             <ImageView
                 android:layout_width="11dp"
                 android:layout_height="13dp"
                 android:src="@drawable/icon_align"
-                app:layout_constraintTop_toTopOf="@id/tv_order_report"
-                app:layout_constraintBottom_toBottomOf="@id/tv_order_report"
-                app:layout_constraintEnd_toStartOf="@id/tv_order_report"
+                app:layout_constraintTop_toTopOf="@id/spinner_order_report"
+                app:layout_constraintBottom_toBottomOf="@id/spinner_order_report"
+                app:layout_constraintEnd_toStartOf="@id/spinner_order_report"
                 android:layout_marginEnd="3dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_order_report"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_order_report"
                 android:layout_marginTop="6dp"
                 app:layout_constraintBottom_toBottomOf="parent">
 
