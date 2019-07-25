@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra(Intent.EXTRA_SUBJECT, "[제보] 일본어 사용 제품 제보합니다!")
             intent.putExtra(Intent.EXTRA_TEXT, "제품명: \nex) CU 리얼초코모찌롤\n\n제조사: \nex) CJ 푸드빌\n\n한 마디: \n\n위 제품을 제보합니다. \n각시탈 파이팅 :)")
 
-            startActivity(Intent.createChooser(intent, "항의 메일 보내기"))
+            startActivity(Intent.createChooser(intent, "제품 제보 메일 보내기"))
         }
     }
 }
