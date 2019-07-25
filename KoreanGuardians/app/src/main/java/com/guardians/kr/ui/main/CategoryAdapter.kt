@@ -8,9 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.guardians.kr.R
+import com.guardians.kr.get.GetCategoryResponseData
 import com.guardians.kr.ui.report.ReportActivity
 
-class CategoryAdapter(val ctx : Context, var categoryItems: ArrayList<CategoryItem>) : RecyclerView.Adapter<CategoryViewHolder>() {
+class CategoryAdapter(val ctx : Context, var categoryItems: ArrayList<GetCategoryResponseData>) : RecyclerView.Adapter<CategoryViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val mainView : View = LayoutInflater.from(parent.context).inflate(R.layout.item_category, parent, false)
         return CategoryViewHolder(mainView)
@@ -21,9 +22,9 @@ class CategoryAdapter(val ctx : Context, var categoryItems: ArrayList<CategoryIt
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         Glide.with(ctx).load(categoryItems[position].img).into(holder.icon_iv)
         holder.name_tv.text = categoryItems[position].name
-        holder.cnt_tv.text = "(${categoryItems[position].cnt})"
+        holder.cnt_tv.text = "(${categoryItems[position].item_cnt})"
         var tmp = ""
-        for (i in categoryItems[position].replacement) {
+        for (i in categoryItems[position].replace_words) {
             tmp += "#$i "
         }
         holder.hashtag_tv.text = tmp.trim()

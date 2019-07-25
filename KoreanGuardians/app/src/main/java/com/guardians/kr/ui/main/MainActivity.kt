@@ -5,35 +5,48 @@ import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import android.content.Intent
+import android.util.Log
 import com.guardians.kr.R
+import com.guardians.kr.get.GetCategoryResponse
+import com.guardians.kr.get.GetCategoryResponseData
+import com.guardians.kr.network.ApplicationController
+import com.guardians.kr.network.NetworkService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity() {
-    private var categoryItems: ArrayList<CategoryItem> = ArrayList()
+    var networkService : NetworkService = ApplicationController.instance.networkService
+    private var categoryItems: ArrayList<GetCategoryResponseData> = ArrayList()
     private lateinit var categoryAdapter: CategoryAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setRecyclerView()
+        setCommunication()
         setClickListener()
     }
 
-    private fun setRecyclerView() {
-        categoryItems.add(CategoryItem("모찌", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 125, arrayListOf("찹쌀떡", "찰떡")))
-        categoryItems.add(CategoryItem("모찌", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 125, arrayListOf("찹쌀떡", "찰떡")))
-        categoryItems.add(CategoryItem("모찌", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 125, arrayListOf("찹쌀떡", "찰떡")))
-        categoryItems.add(CategoryItem("모찌", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 125, arrayListOf("찹쌀떡", "찰떡")))
-        categoryItems.add(CategoryItem("모찌", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 125, arrayListOf("찹쌀떡", "찰떡")))
-        categoryItems.add(CategoryItem("모찌", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 125, arrayListOf("찹쌀떡", "찰떡")))
-        categoryItems.add(CategoryItem("모찌", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 125, arrayListOf("찹쌀떡", "찰떡")))
-        categoryItems.add(CategoryItem("모찌", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 125, arrayListOf("찹쌀떡", "찰떡")))
-        categoryItems.add(CategoryItem("모찌", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 125, arrayListOf("찹쌀떡", "찰떡")))
-        categoryItems.add(CategoryItem("모찌", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 125, arrayListOf("찹쌀떡", "찰떡")))
-        categoryItems.add(CategoryItem("모찌", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 125, arrayListOf("찹쌀떡", "찰떡")))
-        categoryItems.add(CategoryItem("모찌", "https://avatars1.githubusercontent.com/u/18085486?s=460&v=4", 125, arrayListOf("찹쌀떡", "찰떡")))
+    private fun setCommunication() {
+        val getRankReview = networkService.getCategory()
+        getRankReview.enqueue(object : Callback<GetCategoryResponse> {
+            override fun onFailure(call: Call<GetCategoryResponse>?, t: Throwable?) {
+                Log.d("Error::Main", "$t")
+            }
 
+            override fun onResponse(call: Call<GetCategoryResponse>?, response: Response<GetCategoryResponse>?) {
+                if (response!!.isSuccessful) {
+                    categoryItems = response.body().data
+                    setRecyclerView()
+                }
+            }
+
+        })
+    }
+
+    private fun setRecyclerView() {
         categoryAdapter = CategoryAdapter(this, categoryItems)
         rv_category_main.layoutManager = GridLayoutManager(this, 2)
         rv_category_main.adapter = categoryAdapter
