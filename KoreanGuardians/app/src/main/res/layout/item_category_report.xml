@@ -10,7 +10,7 @@
     android:lineSpacingExtra="10sp"
     android:includeFontPadding="false"
     android:paddingStart="12dp"
-    android:paddingTop="3dp"
+    android:paddingTop="2dp"
     android:paddingEnd="12dp"
     android:paddingBottom="5dp"
     android:fontFamily="@font/notosanscjkkrregular"
