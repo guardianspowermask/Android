@@ -2,8 +2,10 @@ package com.guardians.kr.ui.report
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.view.View
 import com.guardians.kr.R
 import com.guardians.kr.get.GetCategoryResponse
 import com.guardians.kr.get.GetCategoryResponseData
@@ -18,42 +20,69 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ReportActivity : AppCompatActivity() {
-    var networkService : NetworkService = ApplicationController.instance.networkService
+class ReportActivity : AppCompatActivity(), View.OnClickListener {
+    private var networkService : NetworkService = ApplicationController.instance.networkService
 
     private var categoryItems: ArrayList<CategoryReportItem> = ArrayList()
     private lateinit var categoryAdapter: CategoryReportAdapter
     private var itemItems: ArrayList<GetItemResponseDataItem> = ArrayList()
     private lateinit var itemAdapter: ItemAdapter
 
-    var selectedIdx : Int = -1
+    private var selectedIdx : Int = -1
+    private var selectedOrder : Int = 0
+
+    override fun onClick(v: View?) {
+        val idx : Int = rv_category_report.getChildAdapterPosition(v!!)
+
+        // change btn color
+        for (i in 0 until categoryItems.size)
+            categoryItems[i].flag = false
+
+        v.background = ContextCompat.getDrawable(this, R.drawable.custom_btn_on)
+        categoryItems[idx].flag = true
+
+        selectedIdx = categoryItems[idx].category_idx
+
+        setCommunication(selectedIdx, selectedOrder)
+
+        categoryAdapter.notifyDataSetChanged()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report)
 
         setRecyclerCategory()
-        setCommunication(selectedIdx, 0)
         setRecyclerItem()
+        setCommunication(selectedIdx, selectedOrder)
     }
 
     private fun setRecyclerCategory() {
         val intentItems = intent.getParcelableArrayListExtra<GetCategoryResponseData>("CATEGORY")
         selectedIdx = intent.getIntExtra("IDX", -1)
 
-        for (i in 0 until intentItems.size)
-            categoryItems.add(CategoryReportItem(selectedIdx == intentItems[i].category_idx, intentItems[i].category_idx, intentItems[i].name))
+        var idx = 0
+        for (i in 0 until intentItems.size) {
+            if (selectedIdx == intentItems[i].category_idx) {
+                idx = i
+                categoryItems.add(CategoryReportItem(true, intentItems[i].category_idx, intentItems[i].name))
+            } else {
+                categoryItems.add(CategoryReportItem(false, intentItems[i].category_idx, intentItems[i].name))
+            }
+        }
 
         categoryAdapter = CategoryReportAdapter(this, categoryItems)
+        categoryAdapter.setOnItemClickListener(this)
         rv_category_report.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         rv_category_report.adapter = categoryAdapter
+        rv_category_report.scrollToPosition(idx)
     }
 
     private fun setCommunication(idx: Int, order: Int) {
         val getItem = networkService.getItem(idx, order)
         getItem.enqueue(object : Callback<GetItemResponse> {
             override fun onFailure(call: Call<GetItemResponse>?, t: Throwable?) {
-                Log.d("Error::Main", "$t")
+                Log.d("Error::Report", "$t")
             }
 
             override fun onResponse(call: Call<GetItemResponse>?, response: Response<GetItemResponse>?) {

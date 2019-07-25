@@ -11,8 +11,16 @@ import com.guardians.kr.R
 import com.guardians.kr.ui.report.CategoryReportItem
 
 class CategoryReportAdapter(var ctx: Context, var categoryItems: ArrayList<CategoryReportItem>) : RecyclerView.Adapter<CategoryReportViewHolder>() {
+    private lateinit var onItemClick : View.OnClickListener
+
+    fun setOnItemClickListener(l : View.OnClickListener){ //3. 외부에서 넘어온 클릭리스너 설정
+        onItemClick = l
+    }
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryReportViewHolder {
         val mainView : View = LayoutInflater.from(parent.context).inflate(R.layout.item_category_report, parent, false)
+        mainView.setOnClickListener(onItemClick)
         return CategoryReportViewHolder(mainView)
     }
 
@@ -28,17 +36,6 @@ class CategoryReportAdapter(var ctx: Context, var categoryItems: ArrayList<Categ
         } else {
             holder.name_tv.background = ContextCompat.getDrawable(ctx, R.drawable.custom_btn_off)
             holder.name_tv.setTextColor(Color.parseColor("#3c3c3c"))
-        }
-
-        // set clickListener
-        holder.name_tv.setOnClickListener {
-            for (i in 0 until categoryItems.size)
-                categoryItems[i].flag = false
-
-            holder.name_tv.background = ContextCompat.getDrawable(ctx, R.drawable.custom_btn_on)
-            categoryItems[position].flag = true
-
-            notifyDataSetChanged()
         }
     }
 }
