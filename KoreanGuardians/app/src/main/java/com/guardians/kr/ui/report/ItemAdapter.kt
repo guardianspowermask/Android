@@ -9,9 +9,17 @@ import com.guardians.kr.R
 import android.widget.Toast
 import android.net.Uri
 import android.content.*
+import android.util.Log
 import com.guardians.kr.get.GetItemResponseDataItem
+import com.guardians.kr.network.ApplicationController
+import com.guardians.kr.network.NetworkService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ItemAdapter(var ctx: Context, var itemItems: ArrayList<GetItemResponseDataItem>) : RecyclerView.Adapter<ItemViewHolder>() {
+    private var networkService : NetworkService = ApplicationController.instance.networkService
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val mainView : View = LayoutInflater.from(parent.context).inflate(R.layout.item_item, parent, false)
         return ItemViewHolder(mainView)
@@ -26,12 +34,18 @@ class ItemAdapter(var ctx: Context, var itemItems: ArrayList<GetItemResponseData
         holder.cnt_tv.text = itemItems[position].report_cnt.toString()
 
         holder.btn_iv.setOnClickListener {
+            communicate(itemItems[position].item_idx)
+
+            itemItems[position].report_cnt++
+
             if (itemItems[position].email != ""){
                 sendEmail(itemItems[position].email?:"", itemItems[position].name)
 
             } else {
                 sendMsg(itemItems[position].facebook?:"", itemItems[position].name)
             }
+
+            notifyDataSetChanged()
         }
     }
 
@@ -63,4 +77,18 @@ class ItemAdapter(var ctx: Context, var itemItems: ArrayList<GetItemResponseData
         val clip = ClipData.newPlainText("fb", msg)
         clipboard!!.primaryClip = clip
     }
+
+    private fun communicate(idx: Int) {
+        val putItem = networkService.putItemReport(idx)
+        putItem.enqueue(object : Callback<Any>{
+            override fun onFailure(call: Call<Any>?, t: Throwable?) {
+                Log.d("Error::Item", "$t")
+            }
+
+            override fun onResponse(call: Call<Any>?, response: Response<Any>?) {
+            }
+
+        })
+    }
+
 }
