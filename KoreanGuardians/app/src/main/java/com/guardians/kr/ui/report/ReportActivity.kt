@@ -83,7 +83,7 @@ class ReportActivity : AppCompatActivity(), View.OnClickListener {
                 parentTv.textSize = 14f
                 parentTv.includeFontPadding = false
                 parentTv.letterSpacing = -0.04f
-                parentTv.typeface = ResourcesCompat.getFont(applicationContext, R.font.notosanscjkkrregular);
+                parentTv.typeface = ResourcesCompat.getFont(applicationContext, R.font.notosanskrregular);
 
                 // if not first time
                 if (selectedIdx != -2)
