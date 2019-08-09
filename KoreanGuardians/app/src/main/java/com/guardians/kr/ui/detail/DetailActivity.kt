@@ -5,10 +5,15 @@ import android.os.Bundle
 import com.guardians.kr.R
 import android.view.WindowManager
 import android.os.Build
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import com.guardians.kr.ui.main.CommentAdapter
+import kotlinx.android.synthetic.main.activity_detail.*
 
 
 class DetailActivity : AppCompatActivity() {
+    private var commentItems: ArrayList<CommentData> = ArrayList()
+    private lateinit var commentAdapter: CommentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +42,35 @@ class DetailActivity : AppCompatActivity() {
             window.addFlags(flags)
         }
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+
+        setRecyclerview()
+    }
+
+    private fun setRecyclerview() {
+        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
+        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
+        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
+        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
+        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
+        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
+        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
+        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
+        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
+        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
+        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
+        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
+        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
+        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
+        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
+        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
+        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
+        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
+        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
+        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
+        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
+        commentAdapter = CommentAdapter(this, commentItems)
+        rv_comment_detail.layoutManager = LinearLayoutManager(this)
+        rv_comment_detail.adapter = commentAdapter
 
     }
 }
