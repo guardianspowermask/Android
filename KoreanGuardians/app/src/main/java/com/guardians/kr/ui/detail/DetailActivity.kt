@@ -1,6 +1,5 @@
 package com.guardians.kr.ui.detail
 
-import android.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.guardians.kr.R
@@ -21,10 +20,10 @@ class DetailActivity : AppCompatActivity() {
         // set Status bar Transparent
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 
-        setRecyclerview()
+        setRecyclerView()
     }
 
-    private fun setRecyclerview() {
+    private fun setRecyclerView() {
         commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
         commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
         commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
