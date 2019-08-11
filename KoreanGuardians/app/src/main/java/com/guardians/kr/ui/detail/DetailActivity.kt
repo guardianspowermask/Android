@@ -18,6 +18,8 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
 
+        // TODO 키보드 처리
+
         // set Status bar Transparent
         // editText hide
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
@@ -32,13 +34,19 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail)
 
         setItemInfo()
+        communicate()
         setRecyclerView()
+        setClickListener()
     }
 
     private fun setItemInfo() {
         tv_name_detail.text = intent.getStringExtra("NAME")
         tv_store_detail.text = "제조사 / ${intent.getStringExtra("STORE")}"
         Glide.with(this).load(intent.getStringExtra("IMG")).into(iv_img_detail)
+    }
+
+    private fun communicate() {
+        // TODO 피드백 여부, 항의 개수, 댓글 가져오기
     }
 
     private fun setRecyclerView() {
@@ -67,5 +75,16 @@ class DetailActivity : AppCompatActivity() {
         rv_comment_detail.layoutManager = LinearLayoutManager(this)
         rv_comment_detail.adapter = commentAdapter
 
+    }
+
+    private fun setClickListener() {
+        btn_feedback_detail.setOnClickListener {
+            // TODO 피드백 존재할 경우 Dialog 띄우기
+        }
+
+        tv_btn_detail.setOnClickListener {
+            // TODO 항의하기 통신
+            // TODO RecyclerView 에 댓글 추가, 항의 count up, EditText Clear
+        }
     }
 }
