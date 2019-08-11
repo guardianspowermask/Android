@@ -16,4 +16,7 @@
         <item name="android:includeFontPadding">false</item>
         <item name="android:fontFamily">@font/notosanskrregular</item>
     </style>
+    <style name="TranslucentStatusBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+    </style>
 </resources>
