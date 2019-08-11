@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.guardians.kr.R
 import android.support.v7.widget.LinearLayoutManager
 import android.view.WindowManager
+import com.bumptech.glide.Glide
 import com.guardians.kr.ui.main.CommentAdapter
 import kotlinx.android.synthetic.main.activity_detail.*
 
@@ -15,12 +16,29 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
+
 
         // set Status bar Transparent
+        // editText hide
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 
+
+        // Full Screen
+        // editText doesn't hide
+//        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+//        window.clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
+
+
+        setContentView(R.layout.activity_detail)
+
+        setItemInfo()
         setRecyclerView()
+    }
+
+    private fun setItemInfo() {
+        tv_name_detail.text = intent.getStringExtra("NAME")
+        tv_store_detail.text = "제조사 / ${intent.getStringExtra("STORE")}"
+        Glide.with(this).load(intent.getStringExtra("IMG")).into(iv_img_detail)
     }
 
     private fun setRecyclerView() {
