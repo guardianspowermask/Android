@@ -1,6 +1,7 @@
 package com.guardians.kr.network
 
 import com.guardians.kr.get.GetCategoryResponse
+import com.guardians.kr.get.GetFeedbackResponse
 import com.guardians.kr.get.GetItemResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -17,8 +18,8 @@ interface NetworkService {
     fun getItem(@Path("category_idx") category_idx : Int,
                 @Path("order") order : Int) : Call<GetItemResponse>
 
-    // 아이템 항의하기
-    @PUT("item/{item_idx}/report")
-    fun putItemReport(@Path("item_idx") item_idx : Int) : Call<Any>
+    // 피드백 보기
+    @GET("feedback/{item_idx}")
+    fun getItemFeedback(@Path("item_idx") item_idx : Int) : Call<GetFeedbackResponse>
 
 }

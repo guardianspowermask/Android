@@ -34,6 +34,7 @@ class ItemAdapter(var ctx: Context, var itemItems: ArrayList<GetItemResponseData
 
         holder.btn_iv.setOnClickListener {
             Intent(ctx, DetailActivity::class.java).let {
+                it.putExtra("ITEM_IDX", itemItems[position].item_idx)
                 it.putExtra("NAME", itemItems[position].name)
                 it.putExtra("STORE", itemItems[position].store)
                 it.putExtra("IMG", itemItems[position].img)

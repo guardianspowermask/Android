@@ -84,7 +84,7 @@ class DetailActivity : AppCompatActivity() {
     private fun setClickListener() {
         if(intent.getIntExtra("FEEDBACK_FLAG", 0)!=0) {
             btn_feedback_detail.setOnClickListener {
-                FeedbackDialog(this, intent.getStringExtra("STORE")).show()
+                FeedbackDialog(this, intent.getStringExtra("STORE"), intent.getIntExtra("ITEM_IDX", 0)).show()
             }
         }
 
