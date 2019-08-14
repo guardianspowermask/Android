@@ -1,17 +1,14 @@
 package com.guardians.kr.ui.main
 
 import android.content.Context
-import android.graphics.Color
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.guardians.kr.R
-import com.guardians.kr.ui.detail.CommentData
-import com.guardians.kr.ui.report.CategoryReportItem
+import com.guardians.kr.network.get.GetCommentResponseData
 
-class CommentAdapter(var ctx: Context, var commentItems: ArrayList<CommentData>) : RecyclerView.Adapter<CommentViewHolder>() {
+class CommentAdapter(var ctx: Context, var commentItems: ArrayList<GetCommentResponseData>) : RecyclerView.Adapter<CommentViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
         val mainView : View = LayoutInflater.from(parent.context).inflate(R.layout.item_comment, parent, false)
         return CommentViewHolder(mainView)

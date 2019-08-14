@@ -8,9 +8,9 @@ import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import com.guardians.kr.R
-import com.guardians.kr.get.GetCategoryResponseData
-import com.guardians.kr.get.GetItemResponse
-import com.guardians.kr.get.GetItemResponseDataItem
+import com.guardians.kr.network.get.GetCategoryResponseData
+import com.guardians.kr.network.get.GetItemResponse
+import com.guardians.kr.network.get.GetItemResponseDataItem
 import com.guardians.kr.network.ApplicationController
 import com.guardians.kr.network.NetworkService
 import com.guardians.kr.ui.main.CategoryReportAdapter

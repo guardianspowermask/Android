@@ -6,8 +6,8 @@ import android.content.Intent
 import android.util.Log
 import com.guardians.kr.network.ApplicationController
 import com.guardians.kr.network.NetworkService
-import com.guardians.kr.post.PostLoginRequestDTO
-import com.guardians.kr.post.PostStringResponseData
+import com.guardians.kr.network.post.PostLoginRequestDTO
+import com.guardians.kr.network.post.PostStringResponseData
 import com.guardians.kr.ui.login.LoginActivity
 import com.guardians.kr.ui.main.MainActivity
 import com.guardians.kr.util.SharedPreferenceController
@@ -39,13 +39,18 @@ class SessionCallback(val ctx: Context) : ISessionCallback {
             }
 
             override fun onSuccess(userProfile: UserProfile) {
-                val postLogin = networkService.postLogin(PostLoginRequestDTO(userProfile.id.toString(), userProfile.nickname))
+                val postLogin = networkService.postLogin(
+                    PostLoginRequestDTO(
+                        userProfile.id.toString(),
+                        userProfile.nickname
+                    )
+                )
                 postLogin.enqueue(object : Callback<PostStringResponseData>{
                     override fun onFailure(call: Call<PostStringResponseData>?, t: Throwable?) {
                         Log.d("Error::Login", "$t")
                     }
 
-                    override fun onResponse(call: Call<PostStringResponseData>?,response: Response<PostStringResponseData>?) {
+                    override fun onResponse(call: Call<PostStringResponseData>?, response: Response<PostStringResponseData>?) {
                         if (response!!.isSuccessful) {
                             SharedPreferenceController.instance.setToken(ctx, response.body().data)
                             ctx.startActivity(Intent(ctx, MainActivity::class.java))

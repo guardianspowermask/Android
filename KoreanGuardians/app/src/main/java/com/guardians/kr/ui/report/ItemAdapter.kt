@@ -10,7 +10,7 @@ import android.widget.Toast
 import android.net.Uri
 import android.content.*
 import android.util.Log
-import com.guardians.kr.get.GetItemResponseDataItem
+import com.guardians.kr.network.get.GetItemResponseDataItem
 import com.guardians.kr.network.ApplicationController
 import com.guardians.kr.network.NetworkService
 import com.guardians.kr.ui.detail.DetailActivity

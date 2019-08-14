@@ -8,7 +8,7 @@ import android.util.Log
 import android.view.Window
 import com.bumptech.glide.Glide
 import com.guardians.kr.R
-import com.guardians.kr.get.GetFeedbackResponse
+import com.guardians.kr.network.get.GetFeedbackResponse
 import com.guardians.kr.network.ApplicationController
 import com.guardians.kr.network.NetworkService
 import kotlinx.android.synthetic.main.dialog_feedback.*

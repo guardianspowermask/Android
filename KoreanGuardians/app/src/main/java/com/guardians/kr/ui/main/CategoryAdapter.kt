@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.guardians.kr.R
-import com.guardians.kr.get.GetCategoryResponseData
+import com.guardians.kr.network.get.GetCategoryResponseData
 import com.guardians.kr.ui.report.ReportActivity
 
 class CategoryAdapter(val ctx : Context, var categoryItems: ArrayList<GetCategoryResponseData>) : RecyclerView.Adapter<CategoryViewHolder>() {

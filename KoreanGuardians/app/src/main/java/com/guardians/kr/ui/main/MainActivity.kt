@@ -7,8 +7,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import android.content.Intent
 import android.util.Log
 import com.guardians.kr.R
-import com.guardians.kr.get.GetCategoryResponse
-import com.guardians.kr.get.GetCategoryResponseData
+import com.guardians.kr.network.get.GetCategoryResponse
+import com.guardians.kr.network.get.GetCategoryResponseData
 import com.guardians.kr.network.ApplicationController
 import com.guardians.kr.network.NetworkService
 import retrofit2.Call

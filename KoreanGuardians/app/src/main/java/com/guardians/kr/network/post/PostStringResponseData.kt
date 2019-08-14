@@ -1,4 +1,4 @@
-package com.guardians.kr.post
+package com.guardians.kr.network.post
 
 data class PostStringResponseData (
     val message: String,

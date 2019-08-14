@@ -6,17 +6,27 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import com.guardians.kr.R
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.guardians.kr.network.ApplicationController
+import com.guardians.kr.network.NetworkService
+import com.guardians.kr.network.get.GetCommentResponse
+import com.guardians.kr.network.get.GetCommentResponseData
 import com.guardians.kr.ui.login.LoginActivity
 import com.guardians.kr.ui.main.CommentAdapter
 import com.guardians.kr.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_detail.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class DetailActivity : AppCompatActivity() {
-    private var commentItems: ArrayList<CommentData> = ArrayList()
+    private var networkService : NetworkService = ApplicationController.instance.networkService
+
+    private var commentItems: ArrayList<GetCommentResponseData> = ArrayList()
     private lateinit var commentAdapter: CommentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +50,6 @@ class DetailActivity : AppCompatActivity() {
 
         setItemInfo()
         communicate()
-        setRecyclerView()
         setClickListener()
     }
 
@@ -54,31 +63,24 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun communicate() {
-        // TODO 피드백 여부, 항의 개수, 댓글 가져오기
+        val getComment = networkService.getComment(intent.getIntExtra("ITEM_IDX", 0))
+        getComment.enqueue(object : Callback<GetCommentResponse>{
+            override fun onFailure(call: Call<GetCommentResponse>?, t: Throwable?) {
+                Log.d("Error::Comment", "$t")
+            }
+
+            override fun onResponse(call: Call<GetCommentResponse>?, response: Response<GetCommentResponse>?) {
+                if (response!!.isSuccessful) {
+                    tv_cnt_detail.text = response.body().data.size.toString()
+                    commentItems = response.body().data
+                    setRecyclerView()
+                }
+            }
+
+        })
     }
 
     private fun setRecyclerView() {
-        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
-        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
-        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
-        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
-        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
-        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
-        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
-        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
-        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
-        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
-        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
-        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
-        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
-        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
-        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
-        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
-        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
-        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
-        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
-        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
-        commentItems.add(CommentData("송**", "2019 09/03", "항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. 항의합니다. "))
         commentAdapter = CommentAdapter(this, commentItems)
         rv_comment_detail.layoutManager = LinearLayoutManager(this)
         rv_comment_detail.adapter = commentAdapter

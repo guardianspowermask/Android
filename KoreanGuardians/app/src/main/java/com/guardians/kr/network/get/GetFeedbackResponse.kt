@@ -1,4 +1,4 @@
-package com.guardians.kr.get
+package com.guardians.kr.network.get
 
 
 data class GetFeedbackResponse (
