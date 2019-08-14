@@ -2,6 +2,7 @@ package com.guardians.kr.ui.detail
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import com.guardians.kr.R
 import android.support.v7.widget.LinearLayoutManager
 import android.view.WindowManager
@@ -43,6 +44,9 @@ class DetailActivity : AppCompatActivity() {
         tv_name_detail.text = intent.getStringExtra("NAME")
         tv_store_detail.text = "제조사 / ${intent.getStringExtra("STORE")}"
         Glide.with(this).load(intent.getStringExtra("IMG")).into(iv_img_detail)
+        if (intent.getIntExtra("FEEDBACK_FLAG", 0) == 0){
+            btn_feedback_detail.background = ContextCompat.getDrawable(this, R.drawable.custom_btn_gray)
+        }
     }
 
     private fun communicate() {

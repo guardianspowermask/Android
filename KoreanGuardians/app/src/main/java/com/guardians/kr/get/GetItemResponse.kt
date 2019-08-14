@@ -15,8 +15,6 @@ data class GetItemResponseDataItem (
     var name : String,
     var img : String,
     var report_cnt : Int,
-    var store : String,
-    var email : String?,
-    var facebook : String?
-
+    var feedback_flag : Int,
+    var store : String
 )

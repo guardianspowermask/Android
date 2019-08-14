@@ -37,6 +37,7 @@ class ItemAdapter(var ctx: Context, var itemItems: ArrayList<GetItemResponseData
                 it.putExtra("NAME", itemItems[position].name)
                 it.putExtra("STORE", itemItems[position].store)
                 it.putExtra("IMG", itemItems[position].img)
+                it.putExtra("FEEDBACK_FLAG", itemItems[position].feedback_flag)
                 ctx.startActivity(it)
             }
         }
