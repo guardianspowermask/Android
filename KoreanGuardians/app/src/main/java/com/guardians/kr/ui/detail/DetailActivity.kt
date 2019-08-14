@@ -82,8 +82,10 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun setClickListener() {
-        btn_feedback_detail.setOnClickListener {
-            // TODO 피드백 존재할 경우 Dialog 띄우기
+        if(intent.getIntExtra("FEEDBACK_FLAG", 0)!=0) {
+            btn_feedback_detail.setOnClickListener {
+                FeedbackDialog(this, intent.getStringExtra("STORE")).show()
+            }
         }
 
         tv_btn_detail.setOnClickListener {
