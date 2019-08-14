@@ -1,10 +1,11 @@
 package com.guardians.kr.network
 
 import android.app.Application
+import com.guardians.kr.kakao.GlobalApplication
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class ApplicationController : Application() {
+class ApplicationController : GlobalApplication() {
     lateinit var networkService: NetworkService
     private val baseUrl = "http://13.125.105.66:3000/"
 

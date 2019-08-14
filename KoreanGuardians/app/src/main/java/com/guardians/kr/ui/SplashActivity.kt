@@ -10,7 +10,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget
 import com.guardians.kr.R
+import com.guardians.kr.ui.login.LoginActivity
 import com.guardians.kr.ui.main.MainActivity
+import com.guardians.kr.util.SharedPreferenceController
 
 class SplashActivity : AppCompatActivity() {
 
@@ -28,8 +30,13 @@ class SplashActivity : AppCompatActivity() {
 
         val handler = Handler()
         handler.postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+            if(SharedPreferenceController.instance.getToken(this)!=""){
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            } else {
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+            }
         }, 3200)
     }
 }

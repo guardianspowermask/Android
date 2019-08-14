@@ -1,13 +1,17 @@
 package com.guardians.kr.ui.detail
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import com.guardians.kr.R
 import android.support.v7.widget.LinearLayoutManager
 import android.view.WindowManager
+import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.guardians.kr.ui.login.LoginActivity
 import com.guardians.kr.ui.main.CommentAdapter
+import com.guardians.kr.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_detail.*
 
 
@@ -89,8 +93,13 @@ class DetailActivity : AppCompatActivity() {
         }
 
         tv_btn_detail.setOnClickListener {
-            // TODO 항의하기 통신
-            // TODO RecyclerView 에 댓글 추가, 항의 count up, EditText Clear
+            if (SharedPreferenceController.instance.getToken(this)==""){
+                Toast.makeText(this, "로그인 후 이용해주세요.", Toast.LENGTH_SHORT)
+                startActivity(Intent(this, LoginActivity::class.java))
+            } else {
+                // TODO 항의하기 통신
+                // TODO RecyclerView 에 댓글 추가, 항의 count up, EditText Clear
+            }
         }
     }
 }
