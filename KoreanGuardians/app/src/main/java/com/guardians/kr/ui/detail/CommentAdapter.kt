@@ -19,6 +19,6 @@ class CommentAdapter(var ctx: Context, var commentItems: ArrayList<GetCommentRes
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
         holder.name_tv.text = commentItems[position].name
         holder.date_tv.text = commentItems[position].date
-        holder.content_tv.text = commentItems[position].content
+        holder.content_tv.text = commentItems[position].comment
     }
 }

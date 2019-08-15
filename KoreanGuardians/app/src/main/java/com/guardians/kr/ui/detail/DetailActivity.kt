@@ -1,12 +1,15 @@
 package com.guardians.kr.ui.detail
 
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import com.guardians.kr.R
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import com.bumptech.glide.Glide
@@ -36,18 +39,17 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         // TODO 키보드 처리
 
         // set Status bar Transparent
         // editText hide
-        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+//        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 
 
         // Full Screen
         // editText doesn't hide
-//        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-//        window.clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
+        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
 
 
         setContentView(R.layout.activity_detail)
@@ -86,7 +88,11 @@ class DetailActivity : AppCompatActivity() {
 
     private fun setRecyclerView() {
         commentAdapter = CommentAdapter(this, commentItems)
-        rv_comment_detail.layoutManager = LinearLayoutManager(this)
+        LinearLayoutManager(this).let{
+            it.reverseLayout = true
+            it.stackFromEnd = true
+            rv_comment_detail.layoutManager = it
+        }
         rv_comment_detail.adapter = commentAdapter
 
     }

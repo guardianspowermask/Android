@@ -10,6 +10,6 @@ data class GetCommentResponseData (
     var name: String,
     var item_idx: Int,
     var user_idx: Int,
-    var content: String,
+    var comment: String,
     var date: String
 )
