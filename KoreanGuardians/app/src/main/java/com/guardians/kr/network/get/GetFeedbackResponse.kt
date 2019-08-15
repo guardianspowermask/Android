@@ -3,7 +3,7 @@ package com.guardians.kr.network.get
 
 data class GetFeedbackResponse (
     var message : String,
-    var data : GetFeedbackResponseData
+    var data : ArrayList<GetFeedbackResponseData>
 )
 
 data class GetFeedbackResponseData (

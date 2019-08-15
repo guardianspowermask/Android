@@ -18,6 +18,10 @@ class CommentAdapter(var ctx: Context, var commentItems: ArrayList<GetCommentRes
 
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
         holder.name_tv.text = commentItems[position].name
+        if (commentItems[position].date.length > 15) {
+            commentItems[position].date = commentItems[position].date.substring(0, 10).replace(".", "/")
+            commentItems[position].date = commentItems[position].date.substring(0, 4) + " " + commentItems[position].date.substring(5)
+        }
         holder.date_tv.text = commentItems[position].date
         holder.content_tv.text = commentItems[position].comment
     }
