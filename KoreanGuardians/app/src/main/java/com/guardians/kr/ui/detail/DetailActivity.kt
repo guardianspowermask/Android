@@ -79,7 +79,10 @@ class DetailActivity : AppCompatActivity() {
                 if (response!!.isSuccessful) {
                     tv_cnt_detail.text = response.body().data.size.toString()
                     commentItems = response.body().data
-                    setRecyclerView()
+                    if (commentItems.size != 0) {
+                        const_bubble_detail.visibility = View.INVISIBLE
+                        setRecyclerView()
+                    }
                 }
             }
 
