@@ -14,6 +14,8 @@ import com.guardians.kr.network.ApplicationController
 import com.guardians.kr.network.NetworkService
 import com.guardians.kr.network.get.GetCommentResponse
 import com.guardians.kr.network.get.GetCommentResponseData
+import com.guardians.kr.network.post.PostBlankResponse
+import com.guardians.kr.network.post.PostCommentRequestDTO
 import com.guardians.kr.ui.login.LoginActivity
 import com.guardians.kr.ui.main.CommentAdapter
 import com.guardians.kr.util.SharedPreferenceController
@@ -28,6 +30,8 @@ class DetailActivity : AppCompatActivity() {
 
     private var commentItems: ArrayList<GetCommentResponseData> = ArrayList()
     private lateinit var commentAdapter: CommentAdapter
+
+    private var firstTouch = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,12 +100,31 @@ class DetailActivity : AppCompatActivity() {
 
         tv_btn_detail.setOnClickListener {
             if (SharedPreferenceController.instance.getToken(this)==""){
-                Toast.makeText(this, "로그인 후 이용해주세요.", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "로그인 후 이용해주세요.", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, LoginActivity::class.java))
             } else {
-                // TODO 항의하기 통신
-                // TODO RecyclerView 에 댓글 추가, 항의 count up, EditText Clear
+                val postComment = networkService.postComment(SharedPreferenceController.instance.getToken(this), PostCommentRequestDTO(intent.getIntExtra("ITEM_IDX", 0), et_comment_detail.text.toString()))
+                postComment.enqueue(object : Callback<PostBlankResponse>{
+                    override fun onFailure(call: Call<PostBlankResponse>?, t: Throwable?) {
+                        Log.d("Error::PostComment", "$t")
+                    }
+
+                    override fun onResponse(call: Call<PostBlankResponse>?, response: Response<PostBlankResponse>?) {
+                        if (response!!.isSuccessful) {
+                            communicate()
+                            et_comment_detail.setText("")
+                            firstTouch = false
+                        }
+                    }
+                })
             }
+        }
+
+        et_comment_detail.setOnTouchListener { v, event ->
+            if(!firstTouch)
+                et_comment_detail.setText("항의합니다.")
+            firstTouch = true
+            false
         }
     }
 }

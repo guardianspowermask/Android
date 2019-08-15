@@ -4,6 +4,8 @@ import com.guardians.kr.network.get.GetCategoryResponse
 import com.guardians.kr.network.get.GetCommentResponse
 import com.guardians.kr.network.get.GetFeedbackResponse
 import com.guardians.kr.network.get.GetItemResponse
+import com.guardians.kr.network.post.PostBlankResponse
+import com.guardians.kr.network.post.PostCommentRequestDTO
 import com.guardians.kr.network.post.PostLoginRequestDTO
 import com.guardians.kr.network.post.PostStringResponseData
 import retrofit2.Call
@@ -30,5 +32,10 @@ interface NetworkService {
     // 댓글 보기
     @GET("comment/{item_idx}")
     fun getComment(@Path("item_idx") item_idx : Int) : Call<GetCommentResponse>
+
+    // 댓글 달기
+    @POST("comment")
+    fun postComment(@Header("Authorization") token : String,
+                    @Body body : PostCommentRequestDTO) : Call<PostBlankResponse>
 
 }
