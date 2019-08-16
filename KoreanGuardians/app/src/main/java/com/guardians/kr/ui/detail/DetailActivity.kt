@@ -112,7 +112,11 @@ class DetailActivity : AppCompatActivity() {
                 Toast.makeText(this, "로그인 후 이용해주세요.", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, LoginActivity::class.java))
             } else {
-                val postComment = networkService.postComment(SharedPreferenceController.instance.getToken(this), PostCommentRequestDTO(intent.getIntExtra("ITEM_IDX", 0), et_comment_detail.text.toString()))
+                var content = "항의합니다."
+                if (et_comment_detail.text.toString()!=""){
+                    content = et_comment_detail.text.toString()
+                }
+                val postComment = networkService.postComment(SharedPreferenceController.instance.getToken(this), PostCommentRequestDTO(intent.getIntExtra("ITEM_IDX", 0), content))
                 postComment.enqueue(object : Callback<PostBlankResponse>{
                     override fun onFailure(call: Call<PostBlankResponse>?, t: Throwable?) {
                         Log.d("Error::PostComment", "$t")
@@ -120,9 +124,13 @@ class DetailActivity : AppCompatActivity() {
 
                     override fun onResponse(call: Call<PostBlankResponse>?, response: Response<PostBlankResponse>?) {
                         if (response!!.isSuccessful) {
-                            communicate()
-                            et_comment_detail.setText("")
-                            firstTouch = false
+                            if (response.body().message != "Success"){
+                                Toast.makeText(this@DetailActivity, response.body().message, Toast.LENGTH_SHORT).show()
+                            } else {
+                                communicate()
+                                et_comment_detail.setText("")
+                                firstTouch = false
+                            }
                         }
                     }
                 })
