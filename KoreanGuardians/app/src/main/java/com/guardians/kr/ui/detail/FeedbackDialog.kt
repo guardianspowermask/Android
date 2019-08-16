@@ -33,8 +33,8 @@ class FeedbackDialog : Dialog {
 
             override fun onResponse(call: Call<GetFeedbackResponse>?, response: Response<GetFeedbackResponse>?) {
                 if (response!!.isSuccessful) {
-                    tv_date_dialog_feedback.text = response.body().data[0].date.substring(0,10).replace("-",".")
-                    Glide.with(context).load(response.body().data[0].img).into(iv_img_dialog_feedback)
+                    tv_date_dialog_feedback.text = response.body().data.date.substring(0,10).replace("-",".")
+                    Glide.with(context).load(response.body().data.img).into(iv_img_dialog_feedback)
                 }
             }
 
