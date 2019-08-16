@@ -22,9 +22,14 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class SessionCallback(val ctx: Context) : ISessionCallback {
-    private var networkService : NetworkService = ApplicationController.instance.networkService
 
+class SessionCallback(val ctx : Context) : ISessionCallback{
+    val networkService = ApplicationController.instance.networkService
+    // 로그인에 실패
+    override fun onSessionOpenFailed(exception: KakaoException?) {
+    }
+
+    // 로그인에 성공
     override fun onSessionOpened() {
 
         UserManagement.requestMe(object : MeResponseCallback() {
@@ -32,13 +37,16 @@ class SessionCallback(val ctx: Context) : ISessionCallback {
                 ctx.startActivity(Intent(ctx, LoginActivity::class.java))
             }
 
-            override fun onSessionClosed(errorResult: ErrorResult) {}
+            override fun onSessionClosed(errorResult: ErrorResult) {
+                Log.e("SessionCallback :: ", "onSessionClosed : " + errorResult!!.errorMessage)
+            }
 
             override fun onNotSignedUp() {
-
+                Log.e("SessionCallback :: ", "onNotSignedUp")
             }
 
             override fun onSuccess(userProfile: UserProfile) {
+                Log.d("asd", "${userProfile.profileImagePath} - ${userProfile.uuid}")
                 val postLogin = networkService.postLogin(
                     PostLoginRequestDTO(
                         userProfile.id.toString(),
@@ -60,11 +68,5 @@ class SessionCallback(val ctx: Context) : ISessionCallback {
                 })
             }
         })
-    }
-
-    // 세션 실패시
-    override fun onSessionOpenFailed(exception: KakaoException) {
-
-
     }
 }
