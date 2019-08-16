@@ -107,8 +107,7 @@
         android:id="@+id/iv_btn_item_item"
         android:layout_width="89dp"
         android:layout_height="38dp"
-        android:src="@drawable/custom_btn_white"
-
+        android:src="@drawable/custom_btn_black"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:clickable="true"
         android:background="?attr/selectableItemBackground"
@@ -124,6 +123,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
     <TextView
+        android:id="@+id/tv_report_item_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16dp"

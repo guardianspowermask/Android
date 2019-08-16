@@ -24,6 +24,7 @@ import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.TextView
 import android.graphics.Color
 import android.support.v4.content.res.ResourcesCompat
+import com.guardians.kr.util.SharedPreferenceController
 
 class ReportActivity : AppCompatActivity(), View.OnClickListener {
     private var networkService : NetworkService = ApplicationController.instance.networkService
@@ -114,7 +115,7 @@ class ReportActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setCommunication(idx: Int, order: Int) {
-        val getItem = networkService.getItem(idx, order)
+        val getItem = networkService.getItem(SharedPreferenceController.instance.getToken(this), idx, order)
         getItem.enqueue(object : Callback<GetItemResponse> {
             override fun onFailure(call: Call<GetItemResponse>?, t: Throwable?) {
                 Log.d("Error::Report", "$t")

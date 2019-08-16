@@ -18,7 +18,8 @@ interface NetworkService {
 
     // 아이템 보기
     @GET("item/{category_idx}/{order}")
-    fun getItem(@Path("category_idx") category_idx : Int,
+    fun getItem(@Header("Authorization") token : String,
+                @Path("category_idx") category_idx : Int,
                 @Path("order") order : Int) : Call<GetItemResponse>
 
     // 피드백 보기

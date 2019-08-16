@@ -6,17 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.guardians.kr.R
-import android.widget.Toast
-import android.net.Uri
 import android.content.*
-import android.util.Log
 import com.guardians.kr.network.get.GetItemResponseDataItem
-import com.guardians.kr.network.ApplicationController
-import com.guardians.kr.network.NetworkService
 import com.guardians.kr.ui.detail.DetailActivity
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class ItemAdapter(var ctx: Context, var itemItems: ArrayList<GetItemResponseDataItem>) : RecyclerView.Adapter<ItemViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -31,6 +23,11 @@ class ItemAdapter(var ctx: Context, var itemItems: ArrayList<GetItemResponseData
         holder.store_tv.text = itemItems[position].store
         Glide.with(ctx).load(itemItems[position].img).into(holder.img_iv)
         holder.cnt_tv.text = itemItems[position].report_cnt.toString()
+
+        if (itemItems[position].report_flag) {
+            holder.btn_iv.setImageResource(R.drawable.custom_btn_white)
+            holder.btn_tv.text = "항의완료"
+        }
 
         holder.btn_iv.setOnClickListener {
             Intent(ctx, DetailActivity::class.java).let {

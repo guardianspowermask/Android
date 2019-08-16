@@ -12,4 +12,5 @@ class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var img_iv : ImageView = itemView.findViewById(R.id.iv_img_item_item)
     var cnt_tv : TextView = itemView.findViewById(R.id.tv_cnt_item_item)
     var btn_iv : ImageView = itemView.findViewById(R.id.iv_btn_item_item)
+    var btn_tv : TextView = itemView.findViewById(R.id.tv_report_item_item)
 }

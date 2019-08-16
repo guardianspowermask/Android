@@ -16,5 +16,6 @@ data class GetItemResponseDataItem (
     var img : String,
     var report_cnt : Int,
     var feedback_flag : Int,
-    var store : String
+    var store : String,
+    var report_flag : Boolean
 )
