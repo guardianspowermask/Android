@@ -69,7 +69,7 @@
                     android:id="@+id/iv_img_dialog_feedback"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="29dp"
+                    android:layout_marginBottom="28dp"
                     android:adjustViewBounds="true"/>
             </LinearLayout>
         </ScrollView>
