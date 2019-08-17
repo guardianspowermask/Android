@@ -64,6 +64,12 @@ class ReportActivity : AppCompatActivity(), View.OnClickListener {
         setCommunication(selectedIdx, selectedOrder)
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        setCommunication(selectedIdx, selectedOrder)
+    }
+
     private fun setSpinner() {
         val order = arrayOf("인기순", "최신순", "이름순")
 
