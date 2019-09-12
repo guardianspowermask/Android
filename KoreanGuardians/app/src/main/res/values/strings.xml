@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">각시탈</string>
+    <string name="kakao_app_key">ec5770afa2976705c3da6f1862057112</string>
 </resources>
